@@ -1,120 +1,168 @@
-# Voice Capture Overlay (72h Challenge)
+# Everlast-AI
 
-A minimal desktop voice capture tool for power users.
-Press a hotkey, speak your thoughts, get clean text directly where you work.
+Offline-first desktop voice tool for power users.
 
-No avatars. No AI theater. No noise.
+**Hotkey → Record → Transcribe → Enrich → Usable Output**
 
-## Quick links
-- Challenge brief: [README_CHALLENGE.md](README_CHALLENGE.md)
-- Definition of Done: [EVERLAST_AI_CHALLENGE_DEFINITION_OF_DONE.md](EVERLAST_AI_CHALLENGE_DEFINITION_OF_DONE.md)
-- Demo script: [DEMO_RUN.md](DEMO_RUN.md)
-- Reviewer summary: [REVIEW_SUMMARY.md](REVIEW_SUMMARY.md)
-
+Built with **Electron + Next.js**, designed for deterministic workflows and fast capture of actionable artifacts.
 
 ---
 
 ## What this is
 
-A quiet desktop overlay that captures spoken input and turns it into usable text.
+Everlast-AI is a minimalist desktop voice application that lets you press a hotkey, speak briefly, and immediately receive a **structured, usable result**.
 
-- Built for focus
-- Built for control
-- Built for offline-first workflows
+Focus:
+- Delivery over polish
+- Deterministic behavior
+- Offline-first operation
+- No accounts, no cloud lock-in
 
-This is a tool, not an assistant.
-
----
-
-## Core Flow
-
-1. Hotkey pressed
-2. Overlay appears (bottom of screen)
-3. Shows `Listening` (once)
-4. User speaks
-5. Speech end detected automatically
-6. Visual-only processing state
-7. Overlay dims
-8. Text appears in the active window
+Target users:
+- Developers
+- Tech leads
+- Managers / knowledge workers
 
 ---
 
-## Input
+## Key Features
 
-- Hotkey activated
-- Default: Push-to-talk (hold)
-- Optional: Toggle mode (tap start / tap stop)
-- Audio input only
-- No text-to-speech
-
----
-
-## Overlay & Presence
-
-- Only visible when active
-- Minimal light-based presence
-- No anthropomorphism
-- No system chatter
-
-Behavior:
-- Start: shows `Listening` once
-- Speaking: overlay retracts slightly
-- End: visual processing → dim → disappear
+- Desktop app (Electron)
+- Single global hotkey
+- Offline-first speech-to-text
+- Python STT sidecar (Vosk)
+- Fixed enrichment presets (no prompt UI)
+- Usable outputs (copy / markdown save)
 
 ---
 
-## Output
+## Quick Start
 
-- Text-only output
-- Inserted directly into the active window
-- No confirmation dialogs
-- No forced previews
+### Requirements
 
-Optional:
-- Hover overlay → pop-up
-- Click to view & copy text
+- Node.js **>= 18**
+- npm
+- Python **>= 3.9**
 
----
-
-## Presets
-
-Opt-in only.
-
-- Meeting Notes
-- Dev Ticket
-- Executive Summary
-
-Default: raw text.
+> Windows, macOS, Linux supported (Electron).
 
 ---
 
-## Offline-first
+### Install
 
-- Works without internet
-- Local STT required
-- Graceful degradation
-- No silent failures
+```bash
+npm install
+```
+
+### Run
+
+```bash
+npm start
+```
+
+### Usage
+
+- Start the app
+- Press `Ctrl+Shift+Space`
+- Speak
+
+Observe lifecycle:
+Idle → Listening → Processing → Done
+
+Use the action palette:
+- Copy
+- Save Markdown
+- Retry
+
+### Enrichment Presets
+
+The app intentionally supports exactly three presets:
+
+**Meeting Note**
+- Bullet points
+- Decisions
+- Action items
+
+**Dev Ticket**
+- Context
+- Steps
+- Expected result
+- Acceptance criteria
+
+**Executive Summary**
+- 3–5 sentences
+- Clear next step
+
+Offline mode uses deterministic templates.
+Online / LLM-based enrichment is optional and explicitly non-required.
+
+### Architecture (High Level)
+
+Renderer (Next.js)
+↕ IPC
+Main (Electron)
+↕ stdin/stdout (JSON)
+Python Sidecar (Vosk STT)
+
+- No native Node bindings
+- No node-gyp
+- No Visual Studio dependency
+- Clear process boundaries
+
+### Offline-First Behavior
+
+**Offline:**
+- Local STT (Vosk)
+- Template-based enrichment
+
+**Online (optional):**
+- Enhanced enrichment via LLM
+
+There is no silent fail.
+The app clearly signals whether it is running in offline or smart mode.
+
+### Verification & Evidence
+
+Operator-run smoke verification and GUI evidence are documented in:
+
+reports/SYNTAX_ERROR_FIX_EVIDENCE.md
+
+This includes:
+- Bootstrap verification
+- Idle-state confirmation
+- Action palette visibility
+- Screenshot evidence
+
+### What this is NOT
+
+- No login
+- No cloud sync
+- No multi-user system
+- No UI playground
+- No agent network
+- No feature experimentation layer
+
+### Status
+
+- End-to-end flow implemented
+- Electron bootstrap stable
+- Evidence finalized
+- Ready for review and submission
+
+### License
+
+See LICENSE.
+
+### Philosophy
+
+A stable system with a minimal interface is fixable.
+A polished interface on an unstable system is not.
 
 ---
 
-## Deliberately avoided
+### Letzter Hinweis (wichtig)
+Deine **Repo-Pack / Governance-README** bitte **nicht löschen**, sondern z. B. nach:
 
-- Avatars
-- Voice output
-- Cloud dependency
-- Always-on listening
-- Feature bloat
+`docs/REPO_PACK.md`
 
----
-
-## Demo
-
-Press hotkey → speak → text appears.
-
----
-
-## Status
-
-Concept final.
-Scope frozen.
-Ready for implementation.
+Das hier ist jetzt die **Produkt-README**, die ein CTO erwartet.
