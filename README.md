@@ -1,5 +1,11 @@
 # Voice Capture Overlay (72h Challenge)
 
+**Portfolio-Status (17. September 2026):** Dieses Repository dokumentiert eine eng geschnittene Voice-UX-Produktentscheidung und enthält einen Electron-Main-Prozess als Teilimplementierung. Der versionierte Default-Branch `master` enthält jedoch keinen vollständigen startbaren Hotkey-zu-Text-Pfad: Paketmanifest, Renderer, Preload und Vosk-Worker fehlen im Repository-Baum. Ein vollständiger Challenge-Abschluss oder ein funktionsfähiger End-to-End-Flow ist damit nicht belegt. Der divergierte Branch `main` beschreibt einen weitergehenden Produktstand; seine README-Claims sind nicht mit einem vollständigen Runtime-Nachweis gleichzusetzen.
+
+[Portfolio Case Study](docs/PORTFOLIO_CASE_STUDY.md) · [Challenge-Kriterien](EVERLAST_AI_CHALLENGE_DEFINITION_OF_DONE.md) · [Review-Entscheidung](REVIEW_SUMMARY.md)
+
+Die folgenden Abschnitte beschreiben überwiegend das **Produktziel und den eingefrorenen Scope**. Sie sind keine Liste aktuell verifizierter Funktionen.
+
 A minimal desktop voice capture tool for power users.
 Press a hotkey, speak your thoughts, get clean text directly where you work.
 
@@ -26,7 +32,7 @@ This is a tool, not an assistant.
 
 ---
 
-## Core Flow
+## Ziel-Flow
 
 1. Hotkey pressed
 2. Overlay appears (bottom of screen)
@@ -107,7 +113,7 @@ Default: raw text.
 
 ---
 
-## Demo
+## Geplante Demo
 
 Press hotkey → speak → text appears.
 
@@ -115,6 +121,4 @@ Press hotkey → speak → text appears.
 
 ## Status
 
-Concept final.
-Scope frozen.
-Ready for implementation.
+Konzept und Scope sind dokumentiert; ein Teil des Electron-Main-Prozesses ist versioniert. Die vollständige Desktop-Runtime, Challenge-Abgabe und Nutzerfluss-Abnahme sind nicht belegt. Die Branch-Divergenz zwischen `master` und `main` ist offen.
