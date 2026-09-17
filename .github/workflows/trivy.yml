@@ -2,7 +2,7 @@ name: Trivy
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [ master, main ]
 
 jobs:
   fs-scan:
@@ -10,9 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Trivy filesystem scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.28.0
         with:
           scan-type: fs
           ignore-unfixed: true
           format: table
           severity: CRITICAL,HIGH
+          exit-code: '1'
